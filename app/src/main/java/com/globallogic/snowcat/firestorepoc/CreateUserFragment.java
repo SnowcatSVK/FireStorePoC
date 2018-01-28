@@ -81,17 +81,12 @@ public class CreateUserFragment extends Fragment implements DatePickerDialog.OnD
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 User user = new User(etFirstName.getText().toString(), etLastName.getText().toString()
                         , date, Integer.parseInt(etAge.getText().toString()));
-                db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                DocumentReference userDoc = db.collection("users").document();
+                user.setId(userDoc.getId());
+                userDoc.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.e("User", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-
-
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("User", e.getMessage());
+                    public void onSuccess(Void aVoid) {
+                        Log.e("UserWrite", "User added");
                     }
                 });
             }

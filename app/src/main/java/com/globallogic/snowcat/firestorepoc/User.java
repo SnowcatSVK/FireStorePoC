@@ -12,6 +12,32 @@ public class User {
     private String lastName;
     private Date dob;
     private int age;
+    private String id;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+
+        return id;
+    }
 
     public User(String firstName, String lastName, Date dob, int age) {
         this.firstName = firstName;
